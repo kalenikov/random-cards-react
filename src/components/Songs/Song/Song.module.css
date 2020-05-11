@@ -1,0 +1,24 @@
+.song {
+    line-height: 1;
+    font-size: x-small;
+}
+
+.songName {
+    font-weight: bold;
+    cursor: pointer;
+    font-size: large;
+}
+
+.lastSeen {
+    /*display: none;*/
+    font-size: x-small;
+}
+
+.editable {
+    /*display: inline-block;*/
+    /*font-size: x-large;*/
+    min-height: 300px;
+    /*border-color: red!important;*/
+    /*border-width: thick;*/
+    border: 3px dashed #aaa;
+}
