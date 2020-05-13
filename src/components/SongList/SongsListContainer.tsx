@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {setTerm} from '../../../redux/song-reducer'
-import {getSongsListThunk, toogleFavorThunk} from '../../../redux/thunks'
+import {setTerm} from '../../redux/song-reducer'
+import {getSongsListThunk, toogleFavorThunk} from '../../redux/thunks'
 import SongList from "./SongList";
 import {createSelector} from 'reselect'
 

@@ -14,7 +14,7 @@ import React, {useState} from "react"
 import {connect} from "react-redux"
 import {Link as RouterLink} from "react-router-dom"
 import {APP_HEADER} from "../../constants/constants"
-import {setSongsList, toogleGetOnlyFavor} from "../../redux/song-reducer"
+import {setSongsList, setTerm, toogleGetOnlyFavor} from "../../redux/song-reducer"
 import {toogleGetOnlyFavorUpdateList} from "../../redux/thunks"
 import SidebarDrawer from "./SidebarDrawer"
 
@@ -78,10 +78,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SearchAppBar = props => {
 
-    const [favor, setFavor] = useState(false)
-
-    const preventDefault = (event) => event.preventDefault()
-
     const classes = useStyles()
     const [open, setOpen] = React.useState(false)
 
@@ -98,7 +94,6 @@ const SearchAppBar = props => {
         <div className={classes.root}>
             <AppBar position="sticky">
                 <Toolbar>
-
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
@@ -115,7 +110,6 @@ const SearchAppBar = props => {
                         </Button>
                     </Typography>
 
-
                     <Switch
                         checked={props.getOnlyFavor}
                         checkedIcon={<FavoriteIcon/>}
@@ -123,16 +117,13 @@ const SearchAppBar = props => {
                         onChange={() => props.toogleGetOnlyFavor()}
                     />
 
-                    {/*<FormControlLabel*/}
-                    {/*    control={favorSwitch}*/}
-                    {/*    label="fav"*/}
-                    {/*/>*/}
-
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon/>
                         </div>
                         <InputBase
+                            value={props.term}
+                            onChange={(ev)=>props.setTerm(ev.currentTarget.value)}
                             placeholder="Search…"
                             classes={{
                                 root: classes.inputRoot,
@@ -141,17 +132,6 @@ const SearchAppBar = props => {
                             inputProps={{"aria-label": "search"}}
                         />
                     </div>
-
-                    {/*<Tooltip title="All cards">*/}
-                    {/*    <IconButton*/}
-                    {/*        component={NavLink}*/}
-                    {/*        to={"/cards/"}*/}
-                    {/*        style={{color: "white"}}>*/}
-                    {/*        <FormatListNumberedOutlinedIcon/>*/}
-                    {/*    </IconButton>*/}
-                    {/*</Tooltip>*/}
-
-
                 </Toolbar>
             </AppBar>
 
@@ -165,8 +145,22 @@ const SearchAppBar = props => {
 const mapStateToProps = state => {
     return {
         getOnlyFavor: state.songReducer.getOnlyFavor,
+        term: state.songReducer.term
     }
 }
 
 
-export default connect(mapStateToProps, {toogleGetOnlyFavor, toogleGetOnlyFavorUpdateList})(SearchAppBar)
+export default connect(mapStateToProps,
+    {
+        toogleGetOnlyFavor,
+        toogleGetOnlyFavorUpdateList,
+        setTerm
+    })(SearchAppBar)
+{/*<Tooltip title="All cards">*/}
+{/*    <IconButton*/}
+{/*        component={NavLink}*/}
+{/*        to={"/cards/"}*/}
+{/*        style={{color: "white"}}>*/}
+{/*        <FormatListNumberedOutlinedIcon/>*/}
+{/*    </IconButton>*/}
+{/*</Tooltip>*/}

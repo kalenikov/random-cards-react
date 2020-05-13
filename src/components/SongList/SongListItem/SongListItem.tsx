@@ -1,7 +1,7 @@
 import React, {FC} from 'react'
 import {NavLink,} from "react-router-dom";
 import s from './SongListItem.module.css'
-import {SongType} from "../../../../constants/types"
+import {SongType} from "../../../constants/types"
 
 type SongListItemPropsTypes = {
     song: SongType

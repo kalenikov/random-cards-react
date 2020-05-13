@@ -1,8 +1,8 @@
 import React from 'react'
 import ContentEditable from "react-contenteditable";
-import {br2nl, nl2br} from '../../../common/nl2br'
+import {br2nl, nl2br} from '../../common/nl2br'
 import s from './Song.module.css'
-import Spinner from '../../Spinner/Spinner';
+import Spinner from '../Spinner/Spinner';
 import LoopIcon from '@material-ui/icons/Loop';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';

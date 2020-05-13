@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
-import {setEditMode, setFontSize} from '../../../redux/song-reducer'
-import {getSongByIdThunk, getSongByRandomThunk, setSongContentThunk, toogleFavorThunk} from '../../../redux/thunks'
+import {setEditMode, setFontSize} from '../../redux/song-reducer'
+import {getSongByIdThunk, getSongByRandomThunk, setSongContentThunk, toogleFavorThunk} from '../../redux/thunks'
 import Song, {SongPropsType} from './Song'
 
 type PathParamsType = {

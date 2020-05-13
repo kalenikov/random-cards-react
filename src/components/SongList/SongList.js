@@ -2,8 +2,8 @@ import Container from "@material-ui/core/Container"
 import React from "react"
 import InputSongName from "./InputSongName"
 import {SongListItem} from "./SongListItem/SongListItem"
-import {SongType} from "../../../constants/types"
-import Spinner from "../../Spinner/Spinner"
+import {SongType} from "../../constants/types"
+import Spinner from "../Spinner/Spinner"
 import List from "@material-ui/core/List"
 import {makeStyles, Theme} from "@material-ui/core/styles"
 import ListItem from "@material-ui/core/ListItem"
@@ -19,10 +19,6 @@ import {FixedSizeList} from "react-window"
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
-        maxWidth: 360,
-        marginLeft: 20,
-        backgroundColor: theme.palette.background.paper,
     },
 }))
 
