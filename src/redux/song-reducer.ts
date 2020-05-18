@@ -3,8 +3,9 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     songs: [] as Array<SongType>,
     currentSongId: null,
+    lastSongIndex: 0,
     currentSongData: {
-        favor: false
+        favor: false, hide: false
     },
     isLoading: false,
     getOnlyFavor: false,
@@ -16,6 +17,7 @@ type SongType = {
     _id: string
     name: string
     favor: boolean
+    hide: boolean
 }
 type initialStateType = typeof initialState
 
@@ -25,6 +27,9 @@ const songsSlice = createSlice({
         reducers: {
             setSongId: (state, action) => {
                 state.currentSongId = action.payload
+            },
+            setLastSongIndex: (state, action) => {
+                state.lastSongIndex = action.payload
             },
             setSongData: (state, action) => {
                 state.currentSongData = action.payload
@@ -49,6 +54,11 @@ const songsSlice = createSlice({
             },
             setLoadingOff: (state) => {
                 state.isLoading = false
+            },
+            toogleHide: (state, action) => {
+                if (state.currentSongData) {
+                    state.currentSongData.hide = !state.currentSongData.hide
+                }
             },
             toogleFavor: (state, action) => {
                 if (state.currentSongData) {
@@ -77,7 +87,9 @@ export const {
     setLoadingOff,
     setLoadingOn,
     setEditMode,
-    setFontSize
+    setFontSize,
+    toogleHide,
+    setLastSongIndex
 } = actions
 
 export default reducer

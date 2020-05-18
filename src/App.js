@@ -2,17 +2,19 @@ import CssBaseline from "@material-ui/core/CssBaseline"
 import LinearProgress from "@material-ui/core/LinearProgress"
 import React from "react"
 import {connect, Provider} from "react-redux"
-import {BrowserRouter, Route, Switch} from "react-router-dom"
+import {Router, Route, Switch} from "react-router-dom"
 import {compose} from "redux"
 import ErrorPage from "./components/ErrorPage/ErrorPage"
 import {Main} from "./components/Info/Main"
 import ListContainer from "./components/List/ListContainer"
 import SearchAppBar from "./components/SearchAppBar/SearchAppBar"
+import NewSongForm from './components/Song/NewSongForm'
 import SongContainer from "./components/Song/SongContainer"
 import SongsListContainer from "./components/SongList/SongsListContainer"
 import {initializeApp} from "./redux/app-reducer"
 import store from "./redux/store"
 import SignIn from "./SignIn/SignIn"
+import history from './common/history';
 
 
 // type PropsType = {
@@ -43,7 +45,8 @@ class App extends React.Component {
                 <Route path='/cards/' exact render={() => <SongsListContainer/>}/>
                 <Route path='/lists/' exact render={() => <ListContainer/>}/>
                 <Route path='/sign/' exact render={() => <SignIn/>}/>
-                <Route path='/card/:id' component={SongContainer}/>
+                <Route path='/new/' exact render={() => <NewSongForm/>}/>
+                <Route path='/card/:id/:index(\d+)?' component={SongContainer}/>
                 <Route exact component={Main}/>
             </Switch>
         )
@@ -74,11 +77,11 @@ const AppContainer = compose(
     connect(mapStateToProps, {initializeApp}))(App)
 
 const RandomCardsApp = () => {
-    return <BrowserRouter>
+    return <Router history={history}>
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </Router>
 
 }
 export default RandomCardsApp

@@ -2,8 +2,8 @@ import * as axios from 'axios'
 
 let baseURL = ''
 if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-    // baseURL = 'http://localhost:5000/api/v1/'
-    baseURL = 'https://random-cards-server.herokuapp.com/api/v1/'
+    baseURL = 'http://localhost:5000/api/v1/'
+    // baseURL = 'https://random-cards-server.herokuapp.com/api/v1/'
 } else {
     // baseURL = 'http://37.228.117.161:5000/api/v1/'
     // baseURL = 'http://192.168.0.100:5000/api/v1/'
@@ -35,8 +35,18 @@ export const SongAPI = {
         const result = instance.post('/cards', {_id: songId, favor: favor})
         return result
     },
+    setHide(songId, hide) {
+        const result = instance.post('/cards', {_id: songId, hide: hide})
+        return result
+    },
     setContent(songId, content) {
         return instance.post('/cards', {_id: songId, content: content})
+    },
+    addSong(name, content, favor) {
+        return instance.post('/cards/add', {name: name, content: content, favor: favor})
+    },
+    deleteSong(songId) {
+        return instance.delete('/cards', {data: {_id: songId}})
     }
 }
 

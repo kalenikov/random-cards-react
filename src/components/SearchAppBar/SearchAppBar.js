@@ -1,11 +1,15 @@
 import AppBar from "@material-ui/core/AppBar"
 import Button from "@material-ui/core/Button"
+import Container from '@material-ui/core/Container'
+import Fab from '@material-ui/core/Fab'
 import IconButton from "@material-ui/core/IconButton"
 import InputBase from "@material-ui/core/InputBase"
 import {fade, makeStyles} from "@material-ui/core/styles"
 import Switch from "@material-ui/core/Switch"
+import TextField from '@material-ui/core/TextField'
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
+import AddIcon from '@material-ui/icons/Add'
 import FavoriteIcon from "@material-ui/icons/Favorite"
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder"
 import MenuIcon from "@material-ui/icons/Menu"
@@ -17,6 +21,9 @@ import {APP_HEADER} from "../../constants/constants"
 import {setSongsList, setTerm, toogleGetOnlyFavor} from "../../redux/song-reducer"
 import {toogleGetOnlyFavorUpdateList} from "../../redux/thunks"
 import SidebarDrawer from "./SidebarDrawer"
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import parse from 'autosuggest-highlight/parse';
+import match from 'autosuggest-highlight/match';
 
 const useStyles = makeStyles((theme) => ({
     list: {
@@ -76,6 +83,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
+const top100Films = [
+    {title: 'The Shawshank Redemption', year: 1994},
+    {title: 'The Godfather', year: 1972},
+    {title: 'The Godfather: Part II', year: 1974},
+    {title: 'The Dark Knight', year: 2008},
+    {title: '12 Angry Men', year: 1957},]
+
 const SearchAppBar = props => {
 
     const classes = useStyles()
@@ -93,6 +107,7 @@ const SearchAppBar = props => {
     return (
         <div className={classes.root}>
             <AppBar position="sticky">
+
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -132,6 +147,11 @@ const SearchAppBar = props => {
                             inputProps={{"aria-label": "search"}}
                         />
                     </div>
+
+                    {/*<div className={classes.search} style={{color: "white"}}>*/}
+                    {/*    <Highlights/>*/}
+                    {/*</div>*/}
+
                 </Toolbar>
             </AppBar>
 
@@ -141,6 +161,33 @@ const SearchAppBar = props => {
         </div>
     )
 }
+
+const Highlights = () => (
+    <Autocomplete
+        id="highlights-demo"
+        style={{width: 300}}
+        options={top100Films}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => (
+            <TextField {...params} label="Highlights" variant="outlined" margin="normal"/>
+        )}
+        renderOption={(option, {inputValue}) => {
+            const matches = match(option.title, inputValue);
+            const parts = parse(option.title, matches);
+
+            return (
+                <div>
+                    {parts.map((part, index) => (
+                        <span key={index} style={{fontWeight: part.highlight ? 700 : 400}}>
+                {part.text}
+              </span>
+                    ))}
+                </div>
+            );
+        }}
+    />
+)
+
 
 const mapStateToProps = state => {
     return {
@@ -156,11 +203,19 @@ export default connect(mapStateToProps,
         toogleGetOnlyFavorUpdateList,
         setTerm
     })(SearchAppBar)
-{/*<Tooltip title="All cards">*/}
-{/*    <IconButton*/}
-{/*        component={NavLink}*/}
-{/*        to={"/cards/"}*/}
-{/*        style={{color: "white"}}>*/}
-{/*        <FormatListNumberedOutlinedIcon/>*/}
-{/*    </IconButton>*/}
-{/*</Tooltip>*/}
+{/*<Tooltip title="All cards">*/
+}
+{/*    <IconButton*/
+}
+{/*        component={NavLink}*/
+}
+{/*        to={"/cards/"}*/
+}
+{/*        style={{color: "white"}}>*/
+}
+{/*        <FormatListNumberedOutlinedIcon/>*/
+}
+{/*    </IconButton>*/
+}
+{/*</Tooltip>*/
+}

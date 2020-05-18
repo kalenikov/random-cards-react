@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {setTerm} from '../../redux/song-reducer'
-import {getSongsListThunk, toogleFavorThunk} from '../../redux/thunks'
+import {getSongsListThunk, toogleFavorThunk, deleteSongThunk} from '../../redux/thunks'
 import SongList from "./SongList";
 import {createSelector} from 'reselect'
 
@@ -29,7 +29,8 @@ const mapStateToProps = (state: any) => {
         term: getTerm(state),
         isLoading: state.songReducer.isLoading,
         getOnlyFavor: state.songReducer.getOnlyFavor,
+        lastSongIndex: state.songReducer.lastSongIndex
     }
 }
 
-export default connect(mapStateToProps, {getSongsListThunk, setTerm, toogleFavorThunk})(SongList)
+export default connect(mapStateToProps, {getSongsListThunk, setTerm, toogleFavorThunk, deleteSongThunk})(SongList)

@@ -3,15 +3,24 @@ import {connect} from 'react-redux'
 import {RouteComponentProps, withRouter} from 'react-router-dom'
 import {compose} from 'redux'
 import {setEditMode, setFontSize} from '../../redux/song-reducer'
-import {getSongByIdThunk, getSongByRandomThunk, setSongContentThunk, toogleFavorThunk} from '../../redux/thunks'
+import {setLastSongIndex} from '../../redux/song-reducer'
+import {
+    deleteSongThunk,
+    getSongByIdThunk,
+    getSongByRandomThunk,
+    setSongContentThunk,
+    toogleFavorThunk,
+    toogleHideThunk
+} from '../../redux/thunks'
 import Song, {SongPropsType} from './Song'
 
 type PathParamsType = {
     id: string
+    index: string
 }
 
 type OwnPropsTypes = {
-    getSongByIdThunk: (id: string) => void
+    getSongByIdThunk: (id: string, index: string) => void
 }
 
 type SongContainerPropsType = RouteComponentProps<PathParamsType> & SongPropsType & OwnPropsTypes
@@ -20,12 +29,12 @@ class SongContainer extends React.Component<SongContainerPropsType> {
 
     componentDidUpdate(prevProps: SongContainerPropsType) {
         if (this.props.match.params.id !== prevProps.match.params.id) {
-            this.props.getSongByIdThunk(this.props.match.params.id)
+            this.props.getSongByIdThunk(this.props.match.params.id, this.props.match.params.index)
         }
     }
 
     componentDidMount() {
-        this.props.getSongByIdThunk(this.props.match.params.id)
+        this.props.getSongByIdThunk(this.props.match.params.id, this.props.match.params.index)
     }
 
     render() {
@@ -35,6 +44,7 @@ class SongContainer extends React.Component<SongContainerPropsType> {
                     history={this.props.history}
                     currentSongData={this.props.currentSongData}
                     toogleFavorThunk={this.props.toogleFavorThunk}
+                    toogleHideThunk={this.props.toogleHideThunk}
                     getSongByRandomThunk={this.props.getSongByRandomThunk}
                     fontSize={this.props.fontSize}
                     setFontSize={this.props.setFontSize}
@@ -42,6 +52,7 @@ class SongContainer extends React.Component<SongContainerPropsType> {
                     setEditMode={this.props.setEditMode}
                     setSongContentThunk={this.props.setSongContentThunk}
                     isLoading={this.props.isLoading}
+                    deleteSongThunk={this.props.deleteSongThunk}
                 />
             </div>)
     }
@@ -56,22 +67,15 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-// export default compose(connect<ReturnType<typeof mapStateToProps>>(mapStateToProps, {
-//         getSongByIdThunk,
-//         getSongByRandomThunkLocal,
-//         toogleFavorThunk,
-//         setSongContentThunk,
-//         setFontSize,
-//         setEditMode,
-//     }),
-//     withRouter)(SongContainer)
-
 export default connect<ReturnType<typeof mapStateToProps>>(mapStateToProps, {
-        getSongByIdThunk,
-        getSongByRandomThunk,
-        toogleFavorThunk,
-        setSongContentThunk,
-        setFontSize,
-        setEditMode,
-    })(SongContainer)
+    getSongByIdThunk,
+    getSongByRandomThunk,
+    toogleFavorThunk,
+    setEditMode,
+    toogleHideThunk,
+    setSongContentThunk,
+    setFontSize,
+    setLastSongIndex,
+    deleteSongThunk
+})(SongContainer)
 
