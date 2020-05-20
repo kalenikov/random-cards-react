@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "/random-cards-react/static/css/main.a6877369.chunk.css",
-    "main.js": "/random-cards-react/static/js/main.a0243021.chunk.js",
-    "main.js.map": "/random-cards-react/static/js/main.a0243021.chunk.js.map",
+    "main.js": "/random-cards-react/static/js/main.24c30aaa.chunk.js",
+    "main.js.map": "/random-cards-react/static/js/main.24c30aaa.chunk.js.map",
     "runtime-main.js": "/random-cards-react/static/js/runtime-main.a23bcfb0.js",
     "runtime-main.js.map": "/random-cards-react/static/js/runtime-main.a23bcfb0.js.map",
-    "static/js/2.f62f82dc.chunk.js": "/random-cards-react/static/js/2.f62f82dc.chunk.js",
-    "static/js/2.f62f82dc.chunk.js.map": "/random-cards-react/static/js/2.f62f82dc.chunk.js.map",
+    "static/js/2.f7d3580e.chunk.js": "/random-cards-react/static/js/2.f7d3580e.chunk.js",
+    "static/js/2.f7d3580e.chunk.js.map": "/random-cards-react/static/js/2.f7d3580e.chunk.js.map",
     "index.html": "/random-cards-react/index.html",
-    "precache-manifest.d5093903557bf4fdc3538550101232d1.js": "/random-cards-react/precache-manifest.d5093903557bf4fdc3538550101232d1.js",
+    "precache-manifest.11e75ef9c099afa73d8ffd19d9fcd8e2.js": "/random-cards-react/precache-manifest.11e75ef9c099afa73d8ffd19d9fcd8e2.js",
     "service-worker.js": "/random-cards-react/service-worker.js",
-    "static/css/main.a6877369.chunk.css.map": "/random-cards-react/static/css/main.a6877369.chunk.css.map",
-    "static/js/2.f62f82dc.chunk.js.LICENSE.txt": "/random-cards-react/static/js/2.f62f82dc.chunk.js.LICENSE.txt"
+    "static/js/2.f7d3580e.chunk.js.LICENSE.txt": "/random-cards-react/static/js/2.f7d3580e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a23bcfb0.js",
-    "static/js/2.f62f82dc.chunk.js",
-    "static/css/main.a6877369.chunk.css",
-    "static/js/main.a0243021.chunk.js"
+    "static/js/2.f7d3580e.chunk.js",
+    "static/js/main.24c30aaa.chunk.js"
   ]
 }
