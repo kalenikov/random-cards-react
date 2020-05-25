@@ -4,9 +4,7 @@ const initialState = {
     songs: [] as Array<SongType>,
     currentSongId: null,
     lastSongIndex: 0,
-    currentSongData: {
-        favor: false, hide: false
-    },
+    currentSongData: {} as SongType,
     isLoading: false,
     getOnlyFavor: false,
     term: '',

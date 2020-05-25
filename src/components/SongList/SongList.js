@@ -76,7 +76,7 @@ const WindowsList = (props) => {
 
     return (
         <>
-            <Button variant="contained" onClick={offset}>Default</Button>
+            {/*//<Button variant="contained" onClick={offset}>Default</Button>*/}
             <AutoSizer>
                 {({height, width}) => {
                     return (

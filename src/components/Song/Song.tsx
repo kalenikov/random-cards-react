@@ -7,6 +7,7 @@ import {Paper} from "@material-ui/core"
 import {FloatButtonBlock} from './SongButtons';
 import {SongTitle} from './SongTitle';
 import {deleteSongThunk} from "../../redux/thunks"
+import {Alert} from "@material-ui/lab"
 
 
 export type SongPropsType = {

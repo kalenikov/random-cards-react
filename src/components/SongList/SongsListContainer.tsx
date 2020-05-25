@@ -4,6 +4,7 @@ import {setTerm} from '../../redux/song-reducer'
 import {getSongsListThunk, toogleFavorThunk, deleteSongThunk} from '../../redux/thunks'
 import SongList from "./SongList";
 import {createSelector} from 'reselect'
+import {SongType} from "../../constants/types"
 
 const getSongs = (state: any) => state.songReducer.songs
 const getTerm = (state: any) => state.songReducer.term
@@ -12,7 +13,8 @@ const getOnlyFavor = (state: any) => state.songReducer.getOnlyFavor
 const filtredSongsSelector = createSelector(
     [getSongs, getTerm, getOnlyFavor],
     (songs, term, getOnlyFavor) => {
-        let filteredSongs = songs.filter((item: any) => item.name.includes(term))
+        // let filteredSongs = songs.filter((item: any) => item.name.includes(term))
+        let filteredSongs = songs.filter((item: SongType)=>!item.hide)
 
         if (getOnlyFavor) {
             filteredSongs = songs.filter((item: any) => item.favor)

@@ -59,9 +59,10 @@ export const toogleGetOnlyFavorUpdateList = (songId: number, favor: boolean) => 
     }
 }
 
-export const toogleHideThunk = (songId: number, hide: boolean) => async (dispatch: any) => {
+export const toogleHideThunk = (songId: string, hide: boolean) => async (dispatch: any, getState: any) => {
     await SongAPI.setHide(songId, !hide)
     dispatch(toogleHide(songId))
+    dispatch(setSongsList(getState().songReducer.songs.filter((song: SongType) => song._id != songId)))
 }
 
 export const addSongThunk = (history: any, name: string, content: string, favor: boolean) => async (dispatch: any) => {

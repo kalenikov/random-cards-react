@@ -4,6 +4,7 @@ import React from "react"
 import {connect, Provider} from "react-redux"
 import {Router, Route, Switch} from "react-router-dom"
 import {compose} from "redux"
+import {PopperContext} from './components/Context/PopperContext'
 import ErrorPage from "./components/ErrorPage/ErrorPage"
 import {Main} from "./components/Info/Main"
 import ListContainer from "./components/List/ListContainer"
@@ -32,12 +33,12 @@ class App extends React.Component {
 
     render() {
 
-        if (this.props.error){
-            return <ErrorPage error={this.props.error} />
+        if (this.props.error) {
+            return <ErrorPage error={this.props.error}/>
         }
 
         if (!this.props.initialized) {
-            return <LinearProgress />
+            return <LinearProgress/>
         }
 
         const routes = (
@@ -54,7 +55,7 @@ class App extends React.Component {
         return (
             // <Layout>
             <>
-                <CssBaseline />
+                <CssBaseline/>
                 {/*<TemporaryDrawer/>*/}
                 <SearchAppBar/>
                 {routes}

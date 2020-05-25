@@ -5,6 +5,7 @@ export type SongType = {
     favor: boolean
     count_seen: number
     time_last_seen: string
+    hide: boolean
 }
 
 export type ListType = {

@@ -4,7 +4,8 @@ import {Dispatch} from "redux"
 
 const initialState = {
     initialized: false,
-    error: ''
+    error: '',
+    popper: ''
 };
 
 const appSlice = createSlice({
