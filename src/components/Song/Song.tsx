@@ -5,9 +5,7 @@ import Spinner from '../Spinner/Spinner';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import {Paper} from "@material-ui/core"
 import {FloatButtonBlock} from './SongButtons';
-import {SongTitle} from './SongTitle';
-import {deleteSongThunk} from "../../redux/thunks"
-import {Alert} from "@material-ui/lab"
+import SongTitle from './SongTitle';
 
 
 export type SongPropsType = {

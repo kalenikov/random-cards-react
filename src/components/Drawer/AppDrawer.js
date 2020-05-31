@@ -1,11 +1,13 @@
 import Avatar from "@material-ui/core/Avatar"
 import Divider from "@material-ui/core/Divider"
 import Drawer from "@material-ui/core/Drawer"
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import {createStyles, makeStyles} from "@material-ui/core/styles"
+import Switch from '@material-ui/core/Switch'
 import React from "react"
 import {Link} from "react-router-dom"
 
@@ -22,7 +24,7 @@ const useStyles = makeStyles(theme =>
         },
     }))
 
-const SidebarDrawer = ({handleDrawerClose, open}) => {
+const AppDrawer = (props) => {
 
     const classes = useStyles()
 
@@ -31,8 +33,8 @@ const SidebarDrawer = ({handleDrawerClose, open}) => {
             className={classes.drawer}
             variant="temporary"
             anchor="left"
-            open={open}
-            onClose={handleDrawerClose}
+            open={props.open}
+            onClose={props.handleDrawerClose}
             classes={{
                 paper: classes.drawerPaper,
             }}
@@ -40,34 +42,54 @@ const SidebarDrawer = ({handleDrawerClose, open}) => {
             <div
                 className={classes.list}
                 role="presentation"
-                onClick={handleDrawerClose}
-                onKeyDown={handleDrawerClose}
             >
                 <List>
-                    <Avatar>Sergey</Avatar>
-
-                    <Divider />
-
                     {/*<ListItem button component={Link} to={'/lists'}>*/}
                     {/*    <ListItemIcon />*/}
                     {/*    <ListItemText primary={"All list"}/>*/}
                     {/*</ListItem>*/}
 
-                    <ListItem button component={Link} to={'/cards'}>
-                        <ListItemIcon />
+                    <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/cards'}>
+                        <ListItemIcon/>
                         <ListItemText primary={"All songs"}/>
                     </ListItem>
 
-                    <Divider />
+                    <ListItem>
+                        <FormControlLabel
+                            control={<Switch
+                                checked={props.getOnlyFavor}
+                                onChange={() => props.toogleGetOnlyFavor()}
+                                name="ShowOnlyFavor"
+                                color="primary"
+                            />}
+                            label="Show only favor"
+                        />
+                    </ListItem>
 
-                    <ListItem button component={Link} to={'/sign/'}>
+                    <ListItem>
+                        <FormControlLabel
+                            control={<Switch
+                                checked={props.getOnlyFavor}
+                                onChange={() => props.toogleGetOnlyFavor()}
+                                name="ShowHide"
+                                color="primary"
+                            />}
+                            label="Show hide"
+                        />
+                    </ListItem>
+
+                    <Divider/>
+
+                    <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/sign/'}>
                         <ListItemText primary={"Logout"}/>
                     </ListItem>
 
                 </List>
             </div>
+
+
         </Drawer>
     )
 }
 
-export default SidebarDrawer
+export default AppDrawer

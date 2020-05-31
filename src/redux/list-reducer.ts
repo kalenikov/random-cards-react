@@ -9,9 +9,10 @@ const initialState = {
     },
     isLoading: false,
     getOnlyFavor: false,
+
     term: '',
-    fontSize: 14,
-    editMode: false
+    // fontSize: 14,
+    // editMode: false
 }
 type SongType = {
     _id: string

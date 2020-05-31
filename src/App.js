@@ -8,7 +8,7 @@ import {PopperContext} from './components/Context/PopperContext'
 import ErrorPage from "./components/ErrorPage/ErrorPage"
 import {Main} from "./components/Info/Main"
 import ListContainer from "./components/List/ListContainer"
-import SearchAppBar from "./components/SearchAppBar/SearchAppBar"
+import SearchAppBar from "./components/AppBar/SearchAppBar"
 import NewSongForm from './components/Song/NewSongForm'
 import SongContainer from "./components/Song/SongContainer"
 import SongsListContainer from "./components/SongList/SongsListContainer"

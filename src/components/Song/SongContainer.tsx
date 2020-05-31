@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {RouteComponentProps, withRouter} from 'react-router-dom'
-import {compose} from 'redux'
-import {setEditMode, setFontSize} from '../../redux/song-reducer'
-import {setLastSongIndex} from '../../redux/song-reducer'
+import {RouteComponentProps} from 'react-router-dom'
+import {setEditMode, setFontSize, setLastSongIndex} from '../../redux/song-reducer'
 import {
     deleteSongThunk,
     getSongByIdThunk,

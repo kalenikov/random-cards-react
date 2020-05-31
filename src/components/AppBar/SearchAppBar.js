@@ -20,7 +20,7 @@ import {Link as RouterLink} from "react-router-dom"
 import {APP_HEADER} from "../../constants/constants"
 import {setSongsList, setTerm, toogleGetOnlyFavor} from "../../redux/song-reducer"
 import {toogleGetOnlyFavorUpdateList} from "../../redux/thunks"
-import SidebarDrawer from "./SidebarDrawer"
+import AppDrawer from "../Drawer/AppDrawer"
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
@@ -99,7 +99,7 @@ const SearchAppBar = props => {
         setOpen(true)
     }
 
-    const handleDrawerClose = () => {
+    const handleDrawerClose = (ev) => {
         setOpen(false)
     }
 
@@ -125,12 +125,12 @@ const SearchAppBar = props => {
                         </Button>
                     </Typography>
 
-                    <Switch
-                        checked={props.getOnlyFavor}
-                        checkedIcon={<FavoriteIcon/>}
-                        icon={<FavoriteBorderIcon/>}
-                        onChange={() => props.toogleGetOnlyFavor()}
-                    />
+                    {/*<Switch*/}
+                    {/*    checked={props.getOnlyFavor}*/}
+                    {/*    checkedIcon={<FavoriteIcon/>}*/}
+                    {/*    icon={<FavoriteBorderIcon/>}*/}
+                    {/*    onChange={() => props.toogleGetOnlyFavor()}*/}
+                    {/*/>*/}
 
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
@@ -155,8 +155,10 @@ const SearchAppBar = props => {
                 </Toolbar>
             </AppBar>
 
-            <SidebarDrawer
+            <AppDrawer
                 handleDrawerClose={handleDrawerClose}
+                getOnlyFavor={props.getOnlyFavor}
+                toogleGetOnlyFavor={props.toogleGetOnlyFavor}
                 open={open}/>
         </div>
     )

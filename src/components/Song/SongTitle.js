@@ -1,16 +1,18 @@
 import {Container, IconButton, Typography} from '@material-ui/core'
-import Popover from '@material-ui/core/Popover'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
 import Popper from '@material-ui/core/Popper'
 import {makeStyles} from '@material-ui/core/styles'
+import DeleteIcon from '@material-ui/icons/Delete'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import HighlightOffIcon from '@material-ui/icons/HighlightOff'
-import {Alert} from '@material-ui/lab'
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import DeleteIcon from '@material-ui/icons/Delete'
+import {bindTrigger} from 'material-ui-popup-state'
+import {bindPopper, bindToggle, usePopupState, anchorRef} from 'material-ui-popup-state/hooks'
+import React, {useEffect, useRef, useState} from 'react'
+import {useParams} from 'react-router'
 import history from '../../common/history'
-import BlockIcon from '@material-ui/icons/Block';
-import {PopperContext} from '../Context/PopperContext'
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const usePrevious = value => {
     const ref = useRef();
@@ -23,26 +25,40 @@ const usePrevious = value => {
 const useStyles = makeStyles(theme => ({
     paper: {
         border: '1px solid',
+        top: '20px',
+        left: '20px',
         padding: theme.spacing(1),
         backgroundColor: theme.palette.background.paper
+    },
+    typography: {
+        padding: theme.spacing(1),
+        opacity: 0.5
     }
 }))
 
-export const SongTitle = (props) => {
+const SongTitle = (props) => {
 
-    // https://blog.logrocket.com/how-to-get-previous-props-state-with-react-hooks/
+    const {id} = useParams()
 
-    const [anchorEl, setAnchorEl] = useState(null)
+    const styles = useStyles()
+    const popupState = usePopupState({variant: 'popper', popupId: 'favorPopper'})
     const favorIconRef = useRef()
     const prevFavor = usePrevious(props.currentSongData.favor)
-    const styles = useStyles()
+    const prevId = usePrevious(id)
+
+
+    popupState.setAnchorEl(favorIconRef.current)
 
     useEffect(() => {
-        if (prevFavor !== undefined) {
-            console.log('now', props.currentSongData.favor, 'prev', prevFavor)
-            setAnchorEl(favorIconRef.current)
+
+        console.log('prevId', prevId, 'id', id)
+
+        // (this.props.match.params.userId != prevProps.match.params.userId)
+        // if (prevFavor !== undefined) {
+        if ((id === prevId) && (prevFavor !== undefined)) {
+            popupState.open()
             setTimeout(() => {
-                setAnchorEl(null)
+                popupState.close()
             }, 2000)
         }
 
@@ -56,11 +72,9 @@ export const SongTitle = (props) => {
         }
     }
 
-    const favorClickHandle = () => {
-        props.toogleFavorThunk(props.currentSongData._id, props.currentSongData.favor)
-    }
 
     return <Container>
+
         <Typography variant={'h6'} noWrap>
             {props.currentSongData.name + (props.editMode ? ' (редактирование)' : '')}
         </Typography>
@@ -68,36 +82,37 @@ export const SongTitle = (props) => {
             {`last seen: ${new Date(props.currentSongData.time_last_seen).toLocaleDateString()}`}
         </Typography>
 
+        <Popper anchorEl={favorIconRef} {...bindPopper(popupState)}>
+            <Paper>
+                <Typography className={styles.typography}>
+                    {props.currentSongData.favor
+                        ? 'Song add to favor'
+                        : 'Song deleted from favor'}
+                </Typography>
+            </Paper>
+        </Popper>
+
         <IconButton
             ref={favorIconRef}
-            onClick={favorClickHandle}>
+            onClick={() => props.toogleFavorThunk(props.currentSongData._id, props.currentSongData.favor)}>
             {props.currentSongData.favor
                 ? <FavoriteIcon/>
                 : <FavoriteBorderIcon/>}
 
         </IconButton>
 
-        <Popper
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-        >
-            <div className={styles.paper}>
-                {props.currentSongData.favor
-                    ? 'Song add to favor'
-                    : 'Song deleted from favor'}
-            </div>
-        </Popper>
-
-
         <IconButton onClick={deleteSongHandler}>
             <DeleteIcon/>
         </IconButton>
 
-
         <IconButton
             onClick={() => props.toogleHideThunk(props.currentSongData._id, props.currentSongData.hide)}>
-            <BlockIcon/>
+            {props.currentSongData.hide
+                ? <VisibilityOffIcon />
+                : <VisibilityIcon />}
         </IconButton>
 
     </Container>
 }
+
+export default SongTitle

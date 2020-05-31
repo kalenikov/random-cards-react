@@ -9,7 +9,8 @@ const initialState = {
     getOnlyFavor: false,
     term: '',
     fontSize: 14,
-    editMode: false
+    editMode: false,
+    showHidden: false,
 }
 type SongType = {
     _id: string
@@ -57,6 +58,12 @@ const songsSlice = createSlice({
                 if (state.currentSongData) {
                     state.currentSongData.hide = !state.currentSongData.hide
                 }
+                state.songs.map((song: SongType) => {
+                    if (song._id === action.payload) {
+                        song.hide = !song.hide
+                    }
+                    return song
+                })
             },
             toogleFavor: (state, action) => {
                 if (state.currentSongData) {
