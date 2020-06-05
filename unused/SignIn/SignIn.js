@@ -10,8 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import {Redirect} from 'react-router-dom'
+import {withAuth} from '../Auth/Auth'
 
 const Copyright = () => (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -44,21 +46,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const SignIn = () => {
+const SignIn = ({authorize}) => {
 
     const classes = useStyles();
 
     return (
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
+            <CssBaseline/>
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
+                    <LockOutlinedIcon/>
                 </Avatar>
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} noValidate onSubmit={authorize}>
                     <TextField
                         variant="outlined"
                         margin="normal"
@@ -82,7 +84,7 @@ const SignIn = () => {
                         autoComplete="current-password"
                     />
                     <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
+                        control={<Checkbox value="remember" color="primary"/>}
                         label="Remember me"
                     />
                     <Button
@@ -91,6 +93,7 @@ const SignIn = () => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
+                        // onClick={authorize}
                     >
                         Sign In
                     </Button>
@@ -109,9 +112,15 @@ const SignIn = () => {
                 </form>
             </div>
             <Box mt={8}>
-                <Copyright />
+                <Copyright/>
             </Box>
         </Container>
     );
 }
-export default SignIn
+export default withAuth(({isAuthorized, authorize}) => {
+    return (
+        isAuthorized
+            ? <Redirect to={'/'}/>
+            : <SignIn authorize={authorize}/>
+    )
+})

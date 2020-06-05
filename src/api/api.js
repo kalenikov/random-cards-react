@@ -5,19 +5,24 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     baseURL = 'http://localhost:5000/api/v1/'
     // baseURL = 'https://random-cards-server.herokuapp.com/api/v1/'
 } else {
-    // baseURL = 'http://37.228.117.161:5000/api/v1/'
-    // baseURL = 'http://192.168.0.100:5000/api/v1/'
-    baseURL = 'http://localhost:5000/api/v1/'
-    // baseURL = 'https://random-cards-server.herokuapp.com/api/v1/'
+    // baseURL = 'http://localhost:5000/api/v1/'
+    baseURL = 'https://random-cards-server.herokuapp.com/api/v1/'
 }
 
-const instance = axios.create({
+
+const getToken = () =>{
+    return localStorage.getItem('TOKEN')
+}
+
+const instance =  axios.create({
     baseURL: baseURL,
     headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getToken()}`
     },
 })
+
 
 export const SongAPI = {
 

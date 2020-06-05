@@ -4,12 +4,17 @@ import Drawer from "@material-ui/core/Drawer"
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import List from "@material-ui/core/List"
 import ListItem from "@material-ui/core/ListItem"
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
 import {createStyles, makeStyles} from "@material-ui/core/styles"
 import Switch from '@material-ui/core/Switch'
 import React from "react"
 import {Link} from "react-router-dom"
+import {useAuth0} from "../Auth0/react-auth0-spa";
+import ListIcon from '@material-ui/icons/List';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+
 
 const useStyles = makeStyles(theme =>
     createStyles({
@@ -25,6 +30,8 @@ const useStyles = makeStyles(theme =>
     }))
 
 const AppDrawer = (props) => {
+
+    const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0()
 
     const classes = useStyles()
 
@@ -44,15 +51,42 @@ const AppDrawer = (props) => {
                 role="presentation"
             >
                 <List>
-                    {/*<ListItem button component={Link} to={'/lists'}>*/}
-                    {/*    <ListItemIcon />*/}
-                    {/*    <ListItemText primary={"All list"}/>*/}
-                    {/*</ListItem>*/}
+                    {user && <>
+                        <ListItem>
+                            <ListItemAvatar>
+                                <Avatar
+                                    src={user.picture}
+                                />
+                            </ListItemAvatar>
+
+                            <ListItemText primary={user.nickname}/>
+
+                        </ListItem>
+
+                        <ListItem button component={Link} to={'/profile'} onClick={props.handleDrawerClose}>
+                            <ListItemText primary={"Profile"}/>
+                        </ListItem>
+
+                        <Divider/>
+                    </>
+                    }
+
 
                     <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/cards'}>
-                        <ListItemIcon/>
-                        <ListItemText primary={"All songs"}/>
+                        <ListItemIcon>
+                            <ListIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary={"My cards"}/>
                     </ListItem>
+
+                    <ListItem button component={Link} to={'/lists'}>
+                        <ListItemIcon>
+                            <LocalOfferIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary={"My tags"}/>
+                    </ListItem>
+
+                    <Divider/>
 
                     <ListItem>
                         <FormControlLabel
@@ -65,6 +99,8 @@ const AppDrawer = (props) => {
                             label="Show only favor"
                         />
                     </ListItem>
+
+
 
                     <ListItem>
                         <FormControlLabel
@@ -80,9 +116,20 @@ const AppDrawer = (props) => {
 
                     <Divider/>
 
-                    <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/sign/'}>
+
+                    {!isAuthenticated &&
+                    // <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/sign/'}>
+                    <ListItem onClick={() => loginWithRedirect({})} button>
+                        <ListItemText primary={"Login"}/>
+                    </ListItem>
+                    }
+
+                    {isAuthenticated &&
+                    // <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/sign/'}>
+                    <ListItem onClick={() => logout()} button>
                         <ListItemText primary={"Logout"}/>
                     </ListItem>
+                    }
 
                 </List>
             </div>
