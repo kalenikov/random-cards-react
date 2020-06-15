@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "70f6f6bce4635f39d041dab4192d3438",
+    "revision": "e0cf2b68df2b817290acfd58ce4ca417",
     "url": "/random-cards-react/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/random-cards-react/static/js/2.2b71ad36.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "9b4e54da2f652f9283fb",
-    "url": "/random-cards-react/static/js/main.1b35b758.chunk.js"
+    "revision": "7fff90bffe1832ef6a27",
+    "url": "/random-cards-react/static/js/main.7a60a3ca.chunk.js"
   },
   {
     "revision": "128aac5742f0321f3f3b",

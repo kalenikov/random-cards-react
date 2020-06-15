@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/random-cards-react/static/js/main.1b35b758.chunk.js",
-    "main.js.map": "/random-cards-react/static/js/main.1b35b758.chunk.js.map",
+    "main.js": "/random-cards-react/static/js/main.7a60a3ca.chunk.js",
+    "main.js.map": "/random-cards-react/static/js/main.7a60a3ca.chunk.js.map",
     "runtime-main.js": "/random-cards-react/static/js/runtime-main.a23bcfb0.js",
     "runtime-main.js.map": "/random-cards-react/static/js/runtime-main.a23bcfb0.js.map",
     "static/js/2.2b71ad36.chunk.js": "/random-cards-react/static/js/2.2b71ad36.chunk.js",
     "static/js/2.2b71ad36.chunk.js.map": "/random-cards-react/static/js/2.2b71ad36.chunk.js.map",
     "index.html": "/random-cards-react/index.html",
-    "precache-manifest.5a6a55fb108a30cf7fd577e00b28a7d7.js": "/random-cards-react/precache-manifest.5a6a55fb108a30cf7fd577e00b28a7d7.js",
+    "precache-manifest.31d0fda86dd4eafe83fc43d080315bb7.js": "/random-cards-react/precache-manifest.31d0fda86dd4eafe83fc43d080315bb7.js",
     "service-worker.js": "/random-cards-react/service-worker.js",
     "static/js/2.2b71ad36.chunk.js.LICENSE.txt": "/random-cards-react/static/js/2.2b71ad36.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a23bcfb0.js",
     "static/js/2.2b71ad36.chunk.js",
-    "static/js/main.1b35b758.chunk.js"
+    "static/js/main.7a60a3ca.chunk.js"
   ]
 }
