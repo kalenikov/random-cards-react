@@ -76,7 +76,7 @@ const AppDrawer = (props) => {
                     </>
                     }
 
-                    {isAuthenticated &&
+                    {!isAuthenticated &&
                     <>
                         <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/cards'}>
                             <ListItemIcon>

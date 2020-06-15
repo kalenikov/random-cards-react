@@ -11,7 +11,7 @@ export const Main = () => {
         {/*<CssBaseline/>*/}
         <Container maxWidth="lg">
             <div>
-                <h1>Random cards</h1>
+                <h1>Random cards v 15.06.2020</h1>
 
                 {user &&
                 <>
