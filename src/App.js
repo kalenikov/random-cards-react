@@ -7,7 +7,7 @@ import {compose} from "redux"
 import history from './common/history';
 import SearchAppBar from "./components/AppBar/SearchAppBar"
 import ErrorPage from "./components/ErrorPage/ErrorPage"
-import {Main} from "./components/Info/Main"
+import {Main} from "./components/Main/Main"
 import ListContainer from "./components/List/ListContainer"
 import Profile from './components/Profile/Profile'
 import NewSongForm from './components/Song/NewSongForm'

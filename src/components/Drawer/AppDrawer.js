@@ -51,6 +51,11 @@ const AppDrawer = (props) => {
                 role="presentation"
             >
                 <List>
+
+                    <ListItem onClick={props.handleDrawerClose} button component={Link} to={'//'}>
+                        <ListItemText primary={"Main"}/>
+                    </ListItem>
+
                     {user && <>
                         <ListItem>
                             <ListItemAvatar>
@@ -71,48 +76,49 @@ const AppDrawer = (props) => {
                     </>
                     }
 
+                    {isAuthenticated &&
+                    <>
+                        <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/cards'}>
+                            <ListItemIcon>
+                                <ListIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary={"My cards"}/>
+                        </ListItem>
 
-                    <ListItem onClick={props.handleDrawerClose} button component={Link} to={'/cards'}>
-                        <ListItemIcon>
-                            <ListIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary={"My cards"}/>
-                    </ListItem>
+                        <ListItem button component={Link} to={'/lists'}>
+                            <ListItemIcon>
+                                <LocalOfferIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary={"My tags"}/>
+                        </ListItem>
 
-                    <ListItem button component={Link} to={'/lists'}>
-                        <ListItemIcon>
-                            <LocalOfferIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary={"My tags"}/>
-                    </ListItem>
+                        <Divider/>
 
-                    <Divider/>
+                        <ListItem>
+                            <FormControlLabel
+                                control={<Switch
+                                    checked={props.getOnlyFavor}
+                                    onChange={() => props.toogleGetOnlyFavor()}
+                                    name="ShowOnlyFavor"
+                                    color="primary"
+                                />}
+                                label="Show only favor"
+                            />
+                        </ListItem>
 
-                    <ListItem>
-                        <FormControlLabel
-                            control={<Switch
-                                checked={props.getOnlyFavor}
-                                onChange={() => props.toogleGetOnlyFavor()}
-                                name="ShowOnlyFavor"
-                                color="primary"
-                            />}
-                            label="Show only favor"
-                        />
-                    </ListItem>
+                        <ListItem>
+                            <FormControlLabel
+                                control={<Switch
+                                    checked={props.getOnlyFavor}
+                                    onChange={() => props.toogleGetOnlyFavor()}
+                                    name="ShowHide"
+                                    color="primary"
+                                />}
+                                label="Show hide"
+                            />
+                        </ListItem>
 
-
-
-                    <ListItem>
-                        <FormControlLabel
-                            control={<Switch
-                                checked={props.getOnlyFavor}
-                                onChange={() => props.toogleGetOnlyFavor()}
-                                name="ShowHide"
-                                color="primary"
-                            />}
-                            label="Show hide"
-                        />
-                    </ListItem>
+                    </>}
 
                     <Divider/>
 

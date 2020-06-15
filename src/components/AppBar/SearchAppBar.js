@@ -1,29 +1,23 @@
 import AppBar from "@material-ui/core/AppBar"
 import Button from "@material-ui/core/Button"
-import Container from '@material-ui/core/Container'
-import Fab from '@material-ui/core/Fab'
 import IconButton from "@material-ui/core/IconButton"
 import InputBase from "@material-ui/core/InputBase"
 import {fade, makeStyles} from "@material-ui/core/styles"
-import Switch from "@material-ui/core/Switch"
 import TextField from '@material-ui/core/TextField'
 import Toolbar from "@material-ui/core/Toolbar"
 import Typography from "@material-ui/core/Typography"
-import AddIcon from '@material-ui/icons/Add'
-import FavoriteIcon from "@material-ui/icons/Favorite"
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder"
 import MenuIcon from "@material-ui/icons/Menu"
 import SearchIcon from "@material-ui/icons/Search"
-import React, {useState} from "react"
+import Autocomplete from '@material-ui/lab/Autocomplete';
+import match from 'autosuggest-highlight/match';
+import parse from 'autosuggest-highlight/parse';
+import React from "react"
 import {connect} from "react-redux"
 import {Link as RouterLink} from "react-router-dom"
 import {APP_HEADER} from "../../constants/constants"
-import {setSongsList, setTerm, toogleGetOnlyFavor} from "../../redux/song-reducer"
+import {setTerm, toogleGetOnlyFavor} from "../../redux/song-reducer"
 import {toogleGetOnlyFavorUpdateList} from "../../redux/thunks"
 import AppDrawer from "../Drawer/AppDrawer"
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import parse from 'autosuggest-highlight/parse';
-import match from 'autosuggest-highlight/match';
 
 const useStyles = makeStyles((theme) => ({
     list: {
