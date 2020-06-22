@@ -139,8 +139,6 @@ const AppDrawer = (props) => {
 
                 </List>
             </div>
-
-
         </Drawer>
     )
 }

@@ -38,7 +38,8 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start_": "react-scripts start",
+    "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -62,6 +63,9 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^4.0.0",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "path": "^0.12.7",
     "prettier": "2.0.5"
   }
 }
