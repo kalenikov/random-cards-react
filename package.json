@@ -19,7 +19,6 @@
     "eslint-plugin-import": "^2.20.2",
     "formik": "^2.1.4",
     "formik-material-ui": "^2.0.0-beta.1",
-    "gh-pages": "^2.2.0",
     "history": "^4.10.1",
     "material-ui-popup-state": "^1.5.4",
     "react": "^16.13.1",
@@ -56,7 +55,6 @@
       "last 1 chrome version"
     ]
   },
-  "homepage": "https://kalenikov.github.io/random-cards-react/",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
