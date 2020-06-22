@@ -34,7 +34,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1"
   },
   "scripts": {
     "start_": "react-scripts start",
