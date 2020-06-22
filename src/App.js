@@ -91,11 +91,13 @@ const onRedirectCallback = appState => {
 };
 
 const RandomCardsApp = () => {
+    console.log('redirect_uri', window.location.origin)
     return <Auth0Provider
         domain={config.domain}
         client_id={config.clientId}
         audience={config.audience}
         redirect_uri={window.location.origin}
+        // redirect_uri={'http://localhost:3000/callback'}
         onRedirectCallback={onRedirectCallback}
         cacheLocation={'localstorage'}
     >
