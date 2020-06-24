@@ -102,8 +102,7 @@ const RandomCardsApp = () => {
             redirect_uri={window.location.origin}
             // redirect_uri={'http://localhost:3000/callback'}
             onRedirectCallback={onRedirectCallback}
-            cacheLocation={'localstorage'}
-        >
+            cacheLocation={'localstorage'}>
             <Router history={history}>
                 <Provider store={store}>
                     <AppContainer />

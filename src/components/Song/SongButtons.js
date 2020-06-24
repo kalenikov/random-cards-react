@@ -1,19 +1,18 @@
-import {Box, IconButton} from '@material-ui/core'
-import {createStyles, makeStyles, Theme} from '@material-ui/core/styles'
-import EditIcon from '@material-ui/icons/Edit'
-import LoopIcon from '@material-ui/icons/Loop'
-import SaveIcon from '@material-ui/icons/Save'
-import ZoomInIcon from '@material-ui/icons/ZoomIn'
-import ZoomOutIcon from '@material-ui/icons/ZoomOut'
-import React from 'react'
+import { Box, IconButton } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import EditIcon from '@material-ui/icons/Edit';
+import LoopIcon from '@material-ui/icons/Loop';
+import SaveIcon from '@material-ui/icons/Save';
+import ZoomInIcon from '@material-ui/icons/ZoomIn';
+import ZoomOutIcon from '@material-ui/icons/ZoomOut';
+import React from 'react';
 
 const useStyles = makeStyles((theme) =>
     createStyles({
         root: {
             display: 'flex',
             flexDirection: 'column',
-            flexWrap: 'nowrap'
-
+            flexWrap: 'nowrap',
         },
         fab: {
             position: 'absolute',
@@ -27,34 +26,29 @@ const useStyles = makeStyles((theme) =>
             top: '100px',
             zIndex: 100,
             '& Button': {
-                display: 'block'
-            }
+                display: 'block',
+            },
         },
-
-    }),
+    })
 );
 
 export const FloatButtonBlock = (props) => {
-    const classes = useStyles()
+    const classes = useStyles();
 
     return (
         <Box className={classes.floatButtonBlock}>
             <IconButton onClick={(ev) => props.shuffle(ev)}>
-                <LoopIcon/>
+                <LoopIcon />
             </IconButton>
             <IconButton onClick={(e) => props.changefontSize(e, 1)}>
-                <ZoomInIcon/>
+                <ZoomInIcon />
             </IconButton>
             <IconButton onClick={(e) => props.changefontSize(e, -1)}>
-                <ZoomOutIcon/>
+                <ZoomOutIcon />
             </IconButton>
             <IconButton onClick={props.toogleEditMode}>
-                {!props.editMode
-                    ? <EditIcon />
-                    : <SaveIcon />
-                }
+                {!props.editMode ? <EditIcon /> : <SaveIcon />}
             </IconButton>
-
         </Box>
-    )
-}
+    );
+};

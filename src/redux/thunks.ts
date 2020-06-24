@@ -1,4 +1,4 @@
-import {SongAPI} from '../api/api'
+import { SongAPI } from '../api/api'
 import {
     setLoadingOff,
     setLoadingOn,
@@ -8,8 +8,8 @@ import {
     toogleGetOnlyFavor,
     toogleHide,
 } from './song-reducer'
-import {setError} from './app-reducer'
-import {SongType} from '../constants/types'
+import { setError } from './app-reducer'
+import { SongType } from '../constants/types'
 
 export const getSongsList = () => async (dispatch: any, getState: any) => {
     dispatch(setLoadingOn())
@@ -56,7 +56,7 @@ export const getRandomSongId = (history: any) => (
     // ]
     // song = ids[Math.floor(Math.random() * ids.length)];
 
-    dispatch(setSong({...song}))
+    dispatch(setSong({ ...song }))
     history.push('/card/' + song._id)
 }
 
@@ -75,7 +75,7 @@ export const postSongContentOnServer = (
     const response = await SongAPI.setContent(songId, content)
     if (response.status === 202) {
         dispatch(setLoadingOff())
-        dispatch(setSong({...getState().songReducer.song, content: content}))
+        dispatch(setSong({ ...getState().songReducer.song, content: content }))
     }
 }
 export const toogleGetOnlyFavorUpdateList = (

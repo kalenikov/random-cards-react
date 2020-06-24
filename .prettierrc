@@ -4,7 +4,10 @@
   "tabWidth": 4,
   "singleQuote": true,
   "trailingComma": "es5",
-  "jsxBracketSameLine": false,
+  "jsxBracketSameLine": true,
   "parser": "flow",
-  "semi": false
+  "semi": false,
+  "jsxSingleQuote": true,
+  "bracketSpacing":false,
+  "arrowParens": "avoid"
 }
