@@ -1,40 +1,31 @@
 import {createSlice} from '@reduxjs/toolkit'
+import { SongType } from '../constants/types'
 
-const initialState = {
+export const initialState = {
     songs: [] as Array<SongType>,
-    currentSongId: null,
-    lastSongIndex: 0,
-    currentSongData: {} as SongType,
+    song: {} as SongType,
     isLoading: false,
     getOnlyFavor: false,
+    showHidden: false,
     term: '',
     fontSize: 14,
     editMode: false,
-    showHidden: false,
 }
-type SongType = {
-    _id: string
-    name: string
-    favor: boolean
-    hide: boolean
-}
+
 type initialStateType = typeof initialState
 
 const songsSlice = createSlice({
         name: 'songs',
         initialState,
         reducers: {
-            setSongId: (state, action) => {
-                state.currentSongId = action.payload
-            },
-            setLastSongIndex: (state, action) => {
-                state.lastSongIndex = action.payload
-            },
-            setSongData: (state, action) => {
-                state.currentSongData = action.payload
+            setSong: (state, action) => {
+                state.song = action.payload
             },
             toogleGetOnlyFavor: (state) => {
                 state.getOnlyFavor = !state.getOnlyFavor
+            },
+            toogleShowHidden: (state) => {
+                state.showHidden = !state.showHidden
             },
             setSongsList: (state, action) => {
                 state.songs = action.payload
@@ -55,8 +46,8 @@ const songsSlice = createSlice({
                 state.isLoading = false
             },
             toogleHide: (state, action) => {
-                if (state.currentSongData) {
-                    state.currentSongData.hide = !state.currentSongData.hide
+                if (state.song) {
+                    state.song.hide = !state.song.hide
                 }
                 state.songs.map((song: SongType) => {
                     if (song._id === action.payload) {
@@ -66,8 +57,8 @@ const songsSlice = createSlice({
                 })
             },
             toogleFavor: (state, action) => {
-                if (state.currentSongData) {
-                    state.currentSongData.favor = !state.currentSongData.favor
+                if (state.song) {
+                    state.song.favor = !state.song.favor
                 }
                 state.songs.map((song: SongType) => {
                     if (song._id === action.payload) {
@@ -83,8 +74,7 @@ const songsSlice = createSlice({
 const {actions, reducer} = songsSlice
 
 export const {
-    setSongId,
-    setSongData,
+    setSong,
     toogleGetOnlyFavor,
     setSongsList,
     setTerm,
@@ -94,7 +84,7 @@ export const {
     setEditMode,
     setFontSize,
     toogleHide,
-    setLastSongIndex
+    toogleShowHidden
 } = actions
 
 export default reducer

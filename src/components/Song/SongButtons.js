@@ -48,10 +48,10 @@ export const FloatButtonBlock = (props) => {
             <IconButton onClick={(e) => props.changefontSize(e, -1)}>
                 <ZoomOutIcon/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={props.toogleEditMode}>
                 {!props.editMode
-                    ? <EditIcon onClick={props.toogleEditMode}/>
-                    : <SaveIcon onClick={props.toogleEditMode}/>
+                    ? <EditIcon />
+                    : <SaveIcon />
                 }
             </IconButton>
 

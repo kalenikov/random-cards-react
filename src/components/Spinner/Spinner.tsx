@@ -19,13 +19,13 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Spinner = () => {
+const Spinner = ({title = 'Songs is loading...'}) => {
     const styles = useStyles()
 
     return (
         <Container className={styles.root}>
             <CircularProgress size={100} className={styles.spinner} />
-            <Typography variant={'h6'}>Songs is loading...</Typography>
+            <Typography variant={'h6'}>{title}</Typography>
         </Container>
     )
 }

@@ -109,8 +109,8 @@ const AppDrawer = (props) => {
                         <ListItem>
                             <FormControlLabel
                                 control={<Switch
-                                    checked={props.getOnlyFavor}
-                                    onChange={() => props.toogleGetOnlyFavor()}
+                                    checked={props.showHidden}
+                                    onChange={() => props.toogleShowHidden()}
                                     name="ShowHide"
                                     color="primary"
                                 />}

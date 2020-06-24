@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {getSongsListThunk} from './thunks'
+import {getSongsList} from './thunks'
 import {Dispatch} from "redux"
 
 const initialState = {
@@ -25,7 +25,7 @@ const {actions, reducer} = appSlice
 export const {initializedSuccess, setError} = actions
 
 export const initializeApp = () => (dispatch: any) => {
-    dispatch(getSongsListThunk());
+    dispatch(getSongsList());
     dispatch(initializedSuccess());
 }
 

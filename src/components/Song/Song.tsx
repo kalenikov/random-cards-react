@@ -9,9 +9,9 @@ import SongTitle from './SongTitle';
 
 
 export type SongPropsType = {
-    getSongByRandomThunk: (history: any) => void
+    getRandomSongIdThunk: (history: any) => void
     history: any
-    currentSongData: any
+    song: any
     isLoading: boolean
     fontSize: number
     editMode: boolean
@@ -63,28 +63,28 @@ const Song: React.FunctionComponent<SongPropsType> = (props: SongPropsType) => {
     const classes = useStyles(props);
     const contentEditable: React.RefObject<HTMLInputElement> = React.createRef();
 
-    if (props.isLoading || !props.currentSongData) {
+    if (props.isLoading || !props.song) {
         return <Spinner/>
     }
 
-    const songContent = nl2br(props.currentSongData.content)
+    const songContent = nl2br(props.song.content)
 
     const shuffle = (e: any) => {
         e.preventDefault()
         if (props.editMode) {
             props.setEditMode(false)
         }
-        props.getSongByRandomThunk(props.history)
+        props.getRandomSongIdThunk(props.history)
     }
 
-    const changefontSize = (e: any, inc: number) => {
+    const changeFontSize = (e: any, inc: number) => {
         props.setFontSize(props.fontSize + inc)
     }
 
     const toogleEditMode = () => {
         props.setEditMode(!props.editMode)
         if (props.editMode && contentEditable.current) {
-            props.setSongContentThunk(props.currentSongData._id, br2nl(contentEditable.current.innerText))
+            props.setSongContentThunk(props.song._id, br2nl(contentEditable.current.innerText))
             props.setEditMode(false)
         }
     }
@@ -93,12 +93,12 @@ const Song: React.FunctionComponent<SongPropsType> = (props: SongPropsType) => {
         <>
             <FloatButtonBlock
                 shuffle={shuffle}
-                changefontSize={changefontSize}
+                changefontSize={changeFontSize}
                 toogleEditMode={toogleEditMode}
                 editMode={props.editMode}/>
 
             <SongTitle
-                currentSongData={props.currentSongData}
+                song={props.song}
                 editMode={props.editMode}
                 toogleFavorThunk={props.toogleFavorThunk}
                 toogleHideThunk={props.toogleHideThunk}
@@ -116,8 +116,8 @@ const Song: React.FunctionComponent<SongPropsType> = (props: SongPropsType) => {
                 />
             </Paper>
 
-        </>)
-
+        </>
+    )
 }
 
 export default Song
