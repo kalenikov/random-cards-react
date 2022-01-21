@@ -6,7 +6,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === "development") {
     baseURL = "http://localhost:9000/api/v1/";
 } else {
     // baseURL = 'http://localhost:5000/api/v1/'
-    baseURL = "http://localhost:9000/api/v1/";
+    baseURL = "https://web-guitar.herokuapp.com/api/v1/";
 }
 
 
