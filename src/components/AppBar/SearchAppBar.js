@@ -19,8 +19,8 @@ import {
     setTerm,
     toogleGetOnlyFavor,
     toogleShowHidden,
-} from '../../redux/song-reducer'
-import { toogleGetOnlyFavorUpdateList } from '../../redux/thunks'
+} from '../../redux/song-reducer.js'
+import { toogleGetOnlyFavorUpdateList } from '../../redux/thunks.js'
 import AppDrawer from '../Drawer/AppDrawer'
 
 const useStyles = makeStyles((theme) => ({

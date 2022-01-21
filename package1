@@ -25,13 +25,16 @@
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",
     "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+//    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start1": "react-scripts start",
-    "start": "node server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
+    "test": "jest",
+    "eject": "react-scripts eject",
     "deploy": "gh-pages -d build && rmdir /S /Q docs && mkdir docs && xcopy /s build docs",
     "predeploy": "yarn run build"
   },

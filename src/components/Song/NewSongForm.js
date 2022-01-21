@@ -4,7 +4,7 @@ import {Button, LinearProgress} from '@material-ui/core'
 import {TextField} from 'formik-material-ui'
 import {CheckboxWithLabel} from 'formik-material-ui';
 import {connect} from 'react-redux'
-import {addSongThunk} from '../../redux/thunks'
+import {addSongThunk} from '../../redux/thunks.js'
 import history from '../../common/history';
 
 const NewSongForm = (props) => (

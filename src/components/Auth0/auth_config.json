@@ -1,5 +1,0 @@
-{
-  "domain": "random-cards.auth0.com",
-  "clientId": "6q6GS1mKNJEvMPJXhRuzTIgirstx0fvh",
-  "audience": "https://random-cards-server.herokuapp.com/api/v1/"
-}

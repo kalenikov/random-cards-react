@@ -5,6 +5,7 @@ import LoopIcon from '@material-ui/icons/Loop';
 import SaveIcon from '@material-ui/icons/Save';
 import ZoomInIcon from '@material-ui/icons/ZoomIn';
 import ZoomOutIcon from '@material-ui/icons/ZoomOut';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 import React from 'react';
 
 const useStyles = makeStyles((theme) =>
@@ -39,6 +40,9 @@ export const FloatButtonBlock = (props) => {
         <Box className={classes.floatButtonBlock}>
             <IconButton onClick={(ev) => props.shuffle(ev)}>
                 <LoopIcon />
+            </IconButton>
+            <IconButton onClick={(ev) => props.next(ev)}>
+              <SkipNextIcon />
             </IconButton>
             <IconButton onClick={(e) => props.changefontSize(e, 1)}>
                 <ZoomInIcon />

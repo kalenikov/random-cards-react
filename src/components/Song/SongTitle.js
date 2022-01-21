@@ -1,84 +1,80 @@
-import { Container, IconButton, Typography } from '@material-ui/core'
-import Paper from '@material-ui/core/Paper'
-import Popper from '@material-ui/core/Popper'
-import { makeStyles } from '@material-ui/core/styles'
-import DeleteIcon from '@material-ui/icons/Delete'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
-import { bindPopper, usePopupState } from 'material-ui-popup-state/hooks'
-import React, { useEffect, useRef } from 'react'
-import { useParams } from 'react-router'
-import history from '../../common/history'
+import { Container, IconButton, Typography } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import VisibilityOffIcon from "@material-ui/icons/VisibilityOff";
+import { bindPopper, usePopupState } from "material-ui-popup-state/hooks";
+import React, { useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import history from "../../common/history";
 
 const usePrevious = (value) => {
-    const ref = useRef()
+    const ref = useRef();
     useEffect(() => {
-        ref.current = value
-    })
-    return ref.current
-}
+        ref.current = value;
+    });
+    return ref.current;
+};
 
 const useStyles = makeStyles((theme) => ({
     paper: {
-        border: '1px solid',
-        top: '20px',
-        left: '20px',
+        border: "1px solid",
+        top: "20px",
+        left: "20px",
         padding: theme.spacing(1),
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: theme.palette.background.paper
     },
     typography: {
         padding: theme.spacing(1),
-        opacity: 0.5,
-    },
-}))
+        opacity: 0.5
+    }
+}));
 
 const SongTitle = (props) => {
-    const { id } = useParams()
+    const { id } = useParams();
 
-    const styles = useStyles()
+    const styles = useStyles();
     const popupState = usePopupState({
-        variant: 'popper',
-        popupId: 'favorPopper',
-    })
-    const favorIconRef = useRef()
-    const currentFavor = props.song.favor
-    const prevFavor = usePrevious(currentFavor)
-    const prevId = usePrevious(id)
+        variant: "popper",
+        popupId: "favorPopper"
+    });
+    const favorIconRef = useRef();
+    const currentFavor = props.song.favor;
+    const prevFavor = usePrevious(currentFavor);
+    const prevId = usePrevious(id);
 
-    popupState.setAnchorEl(favorIconRef.current)
+    popupState.setAnchorEl(favorIconRef.current);
 
     useEffect(() => {
-        console.log(props.song.name, 'prevId', prevId, 'prevFavor', prevFavor)
-        console.log(props.song.name, 'id', id, 'currentFavor', currentFavor)
-
         if (
             prevFavor !== undefined &&
             id === prevId &&
             currentFavor !== prevFavor
         ) {
-            console.log('popupState.open()')
-            popupState.open()
+            popupState.open();
             setTimeout(() => {
-                popupState.close()
-            }, 2000)
+                popupState.close();
+            }, 2000);
         }
-    }, [id, currentFavor])
+    }, [id, currentFavor]);
 
     const deleteSongHandler = () => {
-        const isDelete = window.confirm('Delete this song?')
+        const isDelete = window.confirm("Delete this song?");
         if (isDelete) {
-            props.deleteSongThunk(props.song._id, history)
+            props.deleteSongThunk(props.song.id, history);
         }
-    }
+    };
 
     return (
         <Container>
-            <Typography variant={'h6'} noWrap>
-                {props.song.name + (props.editMode ? ' (редактирование)' : '')}
+            <Typography variant={"h6"} noWrap>
+                {props.song.name + (props.editMode ? " (редактирование)" : "")}
             </Typography>
-            <Typography variant={'caption'}>
+            <Typography variant={"caption"}>
                 {`last seen: ${new Date(
                     props.song.time_last_seen
                 ).toLocaleDateString()}`}
@@ -88,8 +84,8 @@ const SongTitle = (props) => {
                 <Paper>
                     <Typography className={styles.typography}>
                         {props.song.favor
-                            ? 'Song add to favor'
-                            : 'Song deleted from favor'}
+                            ? "Song add to favor"
+                            : "Song deleted from favor"}
                     </Typography>
                 </Paper>
             </Popper>
@@ -97,25 +93,25 @@ const SongTitle = (props) => {
             <IconButton
                 ref={favorIconRef}
                 onClick={() =>
-                    props.toogleFavorThunk(props.song._id, props.song.favor)
+                    props.toogleFavorThunk(props.song.id, props.song.favor)
                 }
             >
-                {props.song.favor ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                {props.song.favor ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
             </IconButton>
 
             <IconButton onClick={deleteSongHandler}>
-                <DeleteIcon />
+                <DeleteIcon/>
             </IconButton>
 
             <IconButton
                 onClick={() =>
-                    props.toogleHideThunk(props.song._id, props.song.hide)
+                    props.toogleHideThunk(props.song.id, props.song.hide)
                 }
             >
-                {props.song.hide ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                {props.song.hide ? <VisibilityOffIcon/> : <VisibilityIcon/>}
             </IconButton>
         </Container>
-    )
-}
+    );
+};
 
-export default SongTitle
+export default SongTitle;

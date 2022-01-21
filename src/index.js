@@ -17,15 +17,7 @@ import * as serviceWorker from './serviceWorker';
 // };
 
 ReactDOM.render(
-    // <Auth0Provider
-    //     domain={config.domain}
-    //     client_id={config.clientId}
-    //     redirect_uri={window.location.origin}
-    //     onRedirectCallback={onRedirectCallback}
-    //     cacheLocation={'localstorage'}
-    // >
-        <RandomCardsApp/>,
-    // </Auth0Provider>,
+  <RandomCardsApp/>,
     document.getElementById('root')
 );
 

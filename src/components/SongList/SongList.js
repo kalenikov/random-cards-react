@@ -13,7 +13,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import Spinner from '../Spinner/Spinner'
+import Spinner from '../Spinner/Spinner.js'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { FixedSizeList } from 'react-window'
 import AutoSizer from 'react-virtualized-auto-sizer'
@@ -36,6 +36,7 @@ const VirtualizedListItem = ({ index, style, data }) => {
     // https://github.com/mui-org/material-ui/issues/16026
 
     const song = data[index]
+    console.log(data)
 
     return (
         <ListItem
@@ -44,16 +45,21 @@ const VirtualizedListItem = ({ index, style, data }) => {
             ContainerProps={{ style: style }}
             ContainerComponent="div"
         >
+
             <ListItemIcon>
                 {song.favor ? <FavoriteIcon /> : <FavoriteBorderIcon />}
             </ListItemIcon>
 
+            {/*<ListItemText >{song.index}</ListItemText>*/}
+
             <ListItemText
                 component={Link}
-                to={'/card/' + song._id}
-                primary={song.name}
-                onClick={() => history.push('/card/' + song._id + '/' + index)}
+                to={'/card/' + song.id}
+                primary={'[' + song.index + '] ' + song.name}
+                onClick={() => history.push('/card/' + song.id + '/' + index)}
             />
+
+            <ListItemText>{new Date(song.time_last_seen).toLocaleString()}</ListItemText>
 
             <ListItemSecondaryAction onClick={() => alert('!')}>
                 <IconButton edge="end" aria-label="delete">
@@ -102,7 +108,7 @@ export const SongList = ({ songs, isLoading, lastSongIndex }) => {
             <Typography variant={'h4'}>All songs</Typography>
 
             {/*<List>*/}
-            {/*    {songs.map(item => <SongListItem song={item} key={item._id}/>)}*/}
+            {/*    {songs.map(item => <SongListItem song={item} key={item.id}/>)}*/}
             {/*</List>*/}
 
             <WindowsList songs={songs} lastSongIndex={lastSongIndex} />
@@ -121,31 +127,31 @@ export const SongList = ({ songs, isLoading, lastSongIndex }) => {
 }
 
 //
-// const SongListItem = ({song}) => {
-//
-//     return <ListItem
-//         button
-//     >
-//         <ListItemIcon>
-//             {song.favor
-//                 ? <FavoriteIcon/>
-//                 : <FavoriteBorderIcon/>}
-//
-//         </ListItemIcon>
-//
-//         <ListItemText button
-//                       component={Link}
-//                       to={"/card/" + song._id}
-//                       primary={song.name}
-//         />
-//
-//         {/*<ListItemSecondaryAction button onClick={()=>alert('111')}>*/}
-//         {/*    <IconButton edge="end" aria-label="delete" onClick={()=>alert('111')}>*/}
-//         {/*        <DeleteIcon onClick={()=>alert('111')}/>*/}
-//         {/*    </IconButton>*/}
-//         {/*</ListItemSecondaryAction>*/}
-//     </ListItem>
-//
-// }
+const SongListItem = ({song}) => {
+
+    return <ListItem
+        button
+    >
+        <ListItemIcon>
+            {song.favor
+                ? <FavoriteIcon/>
+                : <FavoriteBorderIcon/>}
+
+        </ListItemIcon>
+
+        <ListItemText button
+                      component={Link}
+                      to={"/card/" + song.id}
+                      primary={song.name}
+        />
+
+        {/*<ListItemSecondaryAction button onClick={()=>alert('111')}>*/}
+        {/*    <IconButton edge="end" aria-label="delete" onClick={()=>alert('111')}>*/}
+        {/*        <DeleteIcon onClick={()=>alert('111')}/>*/}
+        {/*    </IconButton>*/}
+        {/*</ListItemSecondaryAction>*/}
+    </ListItem>
+
+}
 
 export default SongList
