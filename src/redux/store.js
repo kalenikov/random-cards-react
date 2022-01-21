@@ -1,14 +1,9 @@
-import {configureStore, getDefaultMiddleware} from '@reduxjs/toolkit'
-import appReducer from './app-reducer'
-import reducer from './song-reducer'
-import {createLogger} from 'redux-logger'
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import appReducer from "./app-reducer";
+import reducer from "./song-reducer";
 
-//
-const logger = createLogger({
-    level: 'log',
-});
 
-const middleware = [...getDefaultMiddleware(), logger]
+const middleware = [...getDefaultMiddleware()]
 
 const store = configureStore(
     {
